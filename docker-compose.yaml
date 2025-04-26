@@ -1,7 +1,7 @@
 services:
   postgres:
       image: postgres
-      container_name: postgres
+      # container_name: postgres
     
       ports:
         - 5432:5432
@@ -14,7 +14,7 @@ services:
 
   pgadmin:
       image: dpage/pgadmin4
-      container_name: pgadmin
+      # container_name: pgadmin
 
       ports:
         - 8080:80
