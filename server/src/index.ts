@@ -1,5 +1,5 @@
 import  express from "express";
-import './types';
+// import './types';
 import  { connection }  from "./db/db";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
@@ -12,20 +12,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 connection().then(()=>{
-    app.on("error",(error)=>{
-    console.log("error occur",error)
-    })
+   app.on("error",(error)=>{
+      console.log("error occur",error)
+   })
 
-    app.listen(3000, ()=>{
-        console.log("Server is running on port 3000🚀");
-    })
+   app.listen(3000, ()=>{
+      console.log("Server is running on port 3000🚀");
+   })
     
 }).catch((error)=>{
-console.log("error occur",error)
+   console.log("error occur",error)
 })
 
 app.get("/",(req,res)=>{
-    res.json("hello world ")
+   res.json("hello world ")
 })
 
 import userRoutes from "./routes/user.route";

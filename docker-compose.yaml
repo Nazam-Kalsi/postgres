@@ -1,4 +1,27 @@
 services:
+
+  app:
+    build: 
+      context: ./server
+      dockerfile: dockerfile
+    
+    env_file:
+      - ./server/.env
+
+    ports:
+      - "3000:3000"
+
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+
+    depends_on:
+      - postgres
+
+
+    command: yarn dev
+
+
   postgres:
       image: postgres
       # container_name: postgres

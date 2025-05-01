@@ -1,5 +1,5 @@
 import { handler } from "../helpers/handler";
-import { create } from "../model/crud";
+import { create } from "./crud";
 import bcrypt from "bcryptjs";
 import { findUserByEmail } from "../model/user.model";
 import { generateAccessToken } from "../helpers/generateTokens";
@@ -28,14 +28,11 @@ export const userLogin = handler(async (req, res) => {
   if (!isPasswordValid) throw new Error("Invalid password");
   const options = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production"?true:false,
+    secure: process.env.NODE_ENV === "production" ? true : false,
   };
   const accessToken = await generateAccessToken(user);
-  res
-   .status(200)
-   .cookie("accessToken", accessToken, options)
-   .json({
-      message: "success",
-      data: user,
-   });
+  res.status(200).cookie("accessToken", accessToken, options).json({
+    message: "success",
+    data: user,
+  });
 });
